@@ -95,3 +95,15 @@
   - 文件列表
      - power.py  ->  自写开机启动脚本，自动开启Tickeys，QQ，微信
      - time.py  ->  定时提醒小程序，倒计时，定时提醒等功能
+
+### 0X09 Mail
+
+  - mail客户端服务端
+     - 实现邮件的发送以及接收，包括附件的发送以及解析
+  - 文件列表
+     - smtp.py
+     - pop.py
+     - Dan_mail_client.py
+         - mail的客户端带GUI，此脚本来自[内阁首辅](https://github.com/neigeshoufu)
+     - Dan_Mail.py
+         - mail的发送接收一体带GUI，此脚本来自[内阁首辅](https://github.com/neigeshoufu)
