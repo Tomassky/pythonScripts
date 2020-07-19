@@ -117,7 +117,7 @@ if __name__ == '__main__':
         # 输入邮件地址, 口令和POP3服务器地址
         user = 'xxxxx@qq.com'
         # 此处密码是授权码,用于登录第三方邮件客户端
-        password = 'sfvlbzdgtdghfbeegs'
+        password = 'xxxxx'
         eamil_server = 'pop.qq.com'
         email_class = down_email(user=user,password=password,eamil_server=eamil_server)
         email_class.run_ing()

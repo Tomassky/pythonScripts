@@ -82,9 +82,9 @@ def open_software_weixin():
 
 
 def sendsms():
-	sender = '643008933@qq.com' # 发件人邮箱账号
-	sender_pass = 'ikjdvqecdovibcba' # 发件人邮箱密码
-	receiver = '643008933@qq.com' # 收件人邮箱账号
+	sender = 'xxxx@qq.com' # 发件人邮箱账号
+	sender_pass = 'xxxx' # 发件人邮箱密码
+	receiver = 'xxxx@qq.com' # 收件人邮箱账号
 	content = '开机操作已完成'
  
 	try:
