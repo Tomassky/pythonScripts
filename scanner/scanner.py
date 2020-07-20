@@ -1,104 +1,104 @@
-import time
-import os
-import time
-import sys
-import getopt
+import click
+
+from host_utils import get_hosts, get_hosts_list
+from port_utils import get_ports, get_ports_list
 from host_scan import *
 from port_scan import *
 
-# 定义全局变量
-port_scan_type_opts = ["sy","su","st","ss","sc","sn","sf","sx"]
-host_scan_type_opts = ["pa","pp","pt","pu"]
-post_list = []
-host_list = []
-host_count = 0
+CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 
-def usage():
-	print("\n")
-	print("\t\t\t---------------------------------------------------------------------------------")
-	print("\t\t\t|[Usage]									|")
-	print("\t\t\t	python scanner.py -i 192.168.0.1 -p 80 -t sy ")
-	print("\t\t\t|	python scanner.py -i 192.168.0.0/24 -t pa 				|")
-	print("\t\t\t---------------------------------------------------------------------------------")
-	print("\t\t\t|[Value]									|")
-	print("\t\t\t	IP 		-i 	192.168.0.1 | 192.168.0.0/24 | ip_list.txt")
-	print("\t\t\t|	Port 	-p 	port1 | port1-port2 | port1,port2,port3 | port.txt	|")
-	print("\t\t\t	Port_scan 	-t 	su | sy | st | ss | sn | sf | sx | sc")
-	print("\t\t\t|	Host_scan 	-t 	pp | pa | pn | pt 				|")
-	print("\t\t\t---------------------------------------------------------------------------------")
-	print("\n")
-	sys.exit()
+PORT_SCAN_TYPE = ["sy", "su", "st", "ss", "sc", "sn", "sf", "sx"]
+HOST_SCAN_TYPE = ["pa", "pp", "pt", "pu"]
 
-def main():
-	global port_scan_type_opts
-	global host_scan_type_opts
-	global post_list
-	global host_list
-	global host_count
 
-	# 定义局部变量
-	port_scan_type = ""
-	host_scan_type = ""
-	scan_ip = ""
+@click.command(context_settings=CONTEXT_SETTINGS, no_args_is_help=True)
+@click.option('--ip', '-i', help='Specifies the target IP address.',
+              metavar='<ip>')
+@click.option('--ip-list', '-il',
+              type=click.Path(exists=True),
+              help='Specifies the target IP addresses list file path.',
+              metavar='<ip-list>')
+@click.option('--port', '-p', help='Specifies the target port or ports range.',
+              metavar='<port>')
+@click.option('--port-list', '-pl', help='Specifies the target ports list file path.',
+              type=click.Path(exists=True),
+              metavar='<port-list>')
+@click.option('--scan-type', '-t', help='Specifies the scan type.',
+              type=click.Choice(PORT_SCAN_TYPE + HOST_SCAN_TYPE), metavar='<scan-type>')
+def scanner(ip, ip_list, port, port_list, scan_type):
+    """A simple scanner tool
 
-	if not len(sys.argv[1:]):
-		usage()
+    \b
+    [Usage]
+        python scanner.py -i 192.168.0.1 -p 80 -t sy
+        python scanner.py -i 192.168.0.1 -pl port_list.txt -t sy
+        python scanner.py -i 192.168.0.0/24 -t pa
+        python scanner.py -il ip_list.txt -t pa
+    [Value]
+       IP                  -i      192.168.0.1 | 192.168.0.0/24
+       IP list             -il     ip_list.txt
+       Port                -p      port1 | port1-port2 | port1,port2,port3
+       Port List           -pl     port_list.txt
+       Port scan type      -t      su | sy | st | ss | sn | sf | sx | sc
+       Host scan type      -t      pp | pa | pn | pt
+    """
+    ports_list = []
+    hosts_list = []
+    is_host_scan = True
 
-	try:
-		opts,args = getopt.getopt(sys.argv[1:],"hi:p:t:",["help","port","type"])
-	except getopt.GetoptError as err:
-		print(err)
-		usage()
+    # 定义局部变量
+    port_scan_type = ''
+    host_scan_type = ''
+    scan_ip = ''
 
-	for o,a in opts:
-		if o in ("-h","--help"):
-			usage()
-		elif o in ("-i","--ip"):
-			host_list = choice_host(a)
-			if len(host_list) == 1:
-				host_count = 1
-				scan_ip = host_list[0]
-			else:
-				host_count = 0
-		elif o in ("-p","--port"):
-			port_list = choice_port(a) 
-		elif o in ("-t","--type"):
-			if a in port_scan_type_opts:
-				port_scan_type = a
-				break
-			elif a in host_scan_type_opts:
-				host_scan_type = a
-				break
-		else:
-			print("Unhanled Option")
+    if ip:
+        hosts_list = get_hosts(ip)
+        if len(hosts_list) == 1:
+            scan_ip = hosts_list[0]
+            is_host_scan = False
+    elif ip_list:
+        hosts_list = get_hosts_list(ip_list)
 
-	if host_count == 1 and port_list and port_scan_type and host_list and not host_scan_type:
-		scan_port = port_scan(scan_ip = scan_ip,port_list = port_list)
-		if port_scan_type == 'sy':
-			scan_port.syn_port_scan()
-		elif port_scan_type == 'st':
-			scan_port.tcp_port_scan()
-		elif port_scan_type == 'su':
-			scan_port.udp_port_scan()
-		elif port_scan_type == 'ss':
-			scan_port.socket_port_scan()
-		elif port_scan_type == 'sc':
-			scan_port.common_list_port_scan()
-		elif port_scan_type == 'sn':
-			scan_port.null_port_scan()
-		elif port_scan_type == 'sf':
-			scan_port.fin_port_scan()
-		elif port_scan_type == 'sx':
-			scan_port.xmas_port_scan()
-	if host_count == 0 and host_list and host_scan_type and not port_scan_type:
-		scan_host = host_scan(host_list=host_list)
-		if host_scan_type == 'pp':
-			scan_host.ping_host_scan()
-		elif host_scan_type == 'pa':
-			scan_host.arp_host_scan()
-		elif host_scan_type == 'pu':
-			scan_host.udp_host_scan()
-		elif host_scan_type == 'pt':
-			scan_host.ack_host_scan()
+    if port:
+        ports_list = get_ports(port)
+    elif port_list:
+        ports_list = get_ports_list(port_list)
 
-main()
+    if scan_type:
+        if scan_type in PORT_SCAN_TYPE:
+            port_scan_type = scan_type
+        if scan_type in HOST_SCAN_TYPE:
+            host_scan_type = scan_type
+
+    if not is_host_scan and port_scan_type:
+        scan_port = PortScanner(scan_ip=scan_ip, port_list=ports_list)
+        if port_scan_type == 'sy':
+            scan_port.syn_port_scan()
+        elif port_scan_type == 'st':
+            scan_port.tcp_port_scan()
+        elif port_scan_type == 'su':
+            scan_port.udp_port_scan()
+        elif port_scan_type == 'ss':
+            scan_port.socket_port_scan()
+        elif port_scan_type == 'sc':
+            scan_port.common_list_port_scan()
+        elif port_scan_type == 'sn':
+            scan_port.null_port_scan()
+        elif port_scan_type == 'sf':
+            scan_port.fin_port_scan()
+        elif port_scan_type == 'sx':
+            scan_port.xmas_port_scan()
+    if is_host_scan and host_scan_type:
+        scan_host = HostScanner(host_list=hosts_list)
+        if host_scan_type == 'pp':
+            scan_host.ping_host_scan()
+        elif host_scan_type == 'pa':
+            scan_host.arp_host_scan()
+        elif host_scan_type == 'pu':
+            scan_host.udp_host_scan()
+        elif host_scan_type == 'pt':
+            scan_host.ack_host_scan()
+
+
+if __name__ == '__main__':
+    scanner()

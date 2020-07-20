@@ -53,15 +53,15 @@
 ### 0X04 scanner
 
   - 扫描器，结合主机发现和端口扫描，可扩展性大，打算继续维护，后期可能独立出来
+  - 安装: `pip install -r requirements.txt`
   - 文件列表
-     - __pycache__
      - common_port_list.pkl
      - host_scan.py
-     - host_type.py
+     - host_utils.py
      - ip_list.txt
      - port_list.txt
      - port_scan.py
-     - port_type.py
+     - port_utils.py
      - scanner.py
 
 ### 0X05 sniffer
