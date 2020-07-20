@@ -1,6 +1,10 @@
 ## python_learn
 
   - 简单来讲，就是学习python过程中的资料以及成果，会持续开发.... 
+  - 环境
+     - Window 10 家庭版中文版
+     - python 3.6.8
+     - pip 20.1.1
 
 ### 0X00 ftp
 
