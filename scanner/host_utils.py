@@ -10,7 +10,7 @@ def get_hosts(host):
             return host_list
         else:
             host_list.append(host)
-            return host
+            return host_list
     except Exception as reason:
         print(reason)
         print("主机的形式出错！！")
