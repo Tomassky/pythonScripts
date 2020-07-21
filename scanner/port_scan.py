@@ -8,6 +8,7 @@ class PortScanner:
         self.scan_ip = scan_ip
         self.port_list = port_list
 
+
     def syn_port_scan(self):
         try:
             for port in self.port_list:
