@@ -44,7 +44,6 @@ def scanner(ip, ip_list, port, port_list, scan_type):
     """
     ports_list = []
     hosts_list = []
-    is_host_scan = True
 
     # 定义局部变量
     port_scan_type = ''
@@ -54,7 +53,6 @@ def scanner(ip, ip_list, port, port_list, scan_type):
         hosts_list = get_hosts(ip)
         if len(hosts_list) == 1:
             scan_ip = hosts_list[0]
-            is_host_scan = False
     elif ip_list:
         hosts_list = get_hosts_list(ip_list)
     if port:
@@ -67,8 +65,9 @@ def scanner(ip, ip_list, port, port_list, scan_type):
         if scan_type in HOST_SCAN_TYPE:
             host_scan_type = scan_type
 
-    if not is_host_scan and port_scan_type and ports_list and scan_ip:
-        scan_port = PortScanner(scan_ip = scan_ip, port_list = ports_list)
+
+    if port_scan_type and scan_ip and ports_list:
+        scan_port = PortScanner(scan_ip=scan_ip, port_list=ports_list)
         if port_scan_type == 'sy':
             scan_port.syn_port_scan()
         elif port_scan_type == 'st':
@@ -86,8 +85,8 @@ def scanner(ip, ip_list, port, port_list, scan_type):
         elif port_scan_type == 'sx':
             scan_port.xmas_port_scan()
 
-    if is_host_scan and host_scan_type and hosts_list:
-        scan_host = HostScanner(host_list = hosts_list)
+    if host_scan_type and hosts_list:
+        scan_host = HostScanner(host_list=hosts_list)
         if host_scan_type == 'pp':
             scan_host.ping_host_scan()
         elif host_scan_type == 'pa':

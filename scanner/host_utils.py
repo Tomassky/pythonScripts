@@ -4,7 +4,7 @@ def get_hosts(host):
     string_left_slash = '/'
     host_list = []
     try:
-        if host.find(string_left_slash) != -1:
+        if string_left_slash in host:
             host_prefix = host[:host.rfind(string_point) + 1]
             host_list = [host_prefix + str(ip) for ip in range(1, 255)]
             return host_list

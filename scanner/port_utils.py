@@ -15,12 +15,12 @@ def get_ports(port):
     string_comma = ','
     port_list = []
     try:
-        if port.find(string_line) != -1:
+        if string_line in port:
             start_port, end_port = port.split("-")
             port_list = generate_ports_in_range(start_port, end_port)
             port_list = check_port_list_avaliable(port_list)
             return port_list
-        elif port.find(string_comma) != -1:
+        elif string_comma in port:
             port_list = port.split(",")
             port_list = check_port_list_avaliable(port_list)
             return port_list
@@ -29,7 +29,7 @@ def get_ports(port):
             port_list = check_port_list_avaliable(port_list)
             return port_list
     except Exception as reason:
-        raise reason
+        print(reason)
         print("端口的形式出错！！")
         return None
 
