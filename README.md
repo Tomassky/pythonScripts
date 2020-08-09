@@ -111,3 +111,16 @@
          - mail的客户端带GUI，此脚本来自[内阁首辅](https://github.com/neigeshoufu)
      - Dan_Mail.py
          - mail的发送接收一体带GUI，此脚本来自[内阁首辅](https://github.com/neigeshoufu)
+
+### 0X1O Request
+
+  - requet模块的简单学习
+     - 以sql盲注为例子，进行request模块的学习
+  - 文件列表
+     - request_test.py
+     - normal_sql_inject.py
+         - 一个字符暴力枚举127个ASCII码，枚举sqli的数据库的表和字段，需要接近9分钟（视电脑而定）
+     - and_sql_inject.py
+         - and二进制枚举ASCII码，一个字符只需要七次枚举，枚举sqli的数据库的表和字段，需要1分钟左右（视电脑而定）
+     - second_sql_inject.py
+          - 二分法进行枚举，理论上不超过七次就可以枚举一个字符，算是目前能想到最快的方法，但脚本基础已写好，但仍未补全
