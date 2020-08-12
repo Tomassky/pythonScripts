@@ -82,7 +82,7 @@
      - udp_p2p.py
      - udp_p2p_other.py
 
-### 0X07 tecent_class_qiandao
+### 0X07 tencent_class_qiandao
 
   - [Tencent_class_check_in](https://github.com/Suyixiu/Tencent_class_check_in)
   - 腾讯课堂的自动签到
@@ -107,10 +107,16 @@
   - 文件列表
      - smtp.py
      - pop.py
-     - Dan_mail_client.py
-         - mail的客户端带GUI，此脚本来自[内阁首辅](https://github.com/neigeshoufu)
-     - Dan_Mail.py
-         - mail的发送接收一体带GUI，此脚本来自[内阁首辅](https://github.com/neigeshoufu)
+     - Dan
+        - Dan_mail_client.py
+            - mail的客户端带GUI，此脚本来自[内阁首辅](https://github.com/neigeshoufu)
+        - Dan_Mail.py
+            - mail的发送接收一体带GUI，此脚本来自[内阁首辅](https://github.com/neigeshoufu)
+     - LengSword
+        - ls_email_client.py
+            - mail的收/发客户端带GUI, 此脚本来自[LengSword](https://github.com/LengSword)
+                - 每10秒自动保存上一次编辑的待发邮件正文内容(该功能可能会与强退程序冲突)
+                - 可收/发多个附件
 
 ### 0X1O Request
 
