@@ -81,7 +81,7 @@
     - tcp_server.py
     - udp_p2p.py
     - udp_p2p_other.py
-    - LengSword
+    - LengSword,此脚本来自[LengSword](https://github.com/LengSword)
       - socket_tcp_client_gui.py
       - socket_tcp_server_gui.py
       - socket_udp_a_gui.py
@@ -123,7 +123,7 @@
           - 每10秒自动保存上一次编辑的待发邮件正文内容(该功能可能会与强退程序冲突)
           - 可收/发多个附件
 
-### 0X1O Request
+### 0X10 Request
 
   - requet模块的简单学习
     - 以sql盲注为例子，进行request模块的学习
