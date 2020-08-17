@@ -74,14 +74,14 @@
 
 ### 0X06 socket
 
-  - udp以及tcp的通讯模拟
+  - udp、tcp的通讯模拟以及基于tcp、udp、sctp的shell
     - 基于socket
   - 文件列表
     - tcp_client.py
     - tcp_server.py
     - udp_p2p.py
     - udp_p2p_other.py
-    - LengSword,此脚本来自[LengSword](https://github.com/LengSword)
+    - LengSword，此脚本来自[LengSword](https://github.com/LengSword)
       - socket_tcp_client_gui.py
       - socket_tcp_server_gui.py
       - socket_udp_a_gui.py
@@ -135,3 +135,5 @@
       - and二进制枚举ASCII码，一个字符只需要七次枚举，枚举sqli的数据库的表和字段，需要1分钟左右（视电脑而定）
     - second_sql_inject.py
       - 二分法进行枚举，理论上不超过七次就可以枚举一个字符，算是目前能想到最快的方法，但脚本基础已写好，但仍未补全
+    - ip_pool.py
+      - 爬取快代理的免费代理ip，改编来自[酷酷的章鱼哥](https://zhuanlan.zhihu.com/p/53433335)的脚本，推荐Github上的一个代理池[jhao104](https://github.com/jhao104/proxy_pool)
