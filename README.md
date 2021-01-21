@@ -137,3 +137,15 @@
       - 二分法进行枚举，理论上不超过七次就可以枚举一个字符，算是目前能想到最快的方法，但脚本基础已写好，但仍未补全
     - ip_pool.py
       - 爬取快代理的免费代理ip，改编来自[酷酷的章鱼哥](https://zhuanlan.zhihu.com/p/53433335)的脚本，推荐Github上的一个代理池[jhao104](https://github.com/jhao104/proxy_pool)
+
+### 0X11 Remote_control_tool
+
+  - 简单远控终端的编写
+    - 原项目来自：[tammypi](https://github.com/tammypi/remote_control_tool)，原始项目为python2开发，且本人在运行中存在一定的错误，现在改为python3开发，修复一定的错误（如接收数据TCP链接的前四个字节需丢弃）
+  - 文件列表
+    - clinet/client_main.py
+      - python3开发的客户端，支持链接python2/3开发的服务端
+    - server/server_main_python2.py
+      - 修改后的python2开发的服务端
+    - server/server_main_python3.py
+      - python3开发的服务端
