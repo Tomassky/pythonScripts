@@ -1,16 +1,11 @@
-## python_learn
+## pythonScripts
 
-  - 简单来讲，就是学习python过程中的资料以及成果，会持续开发.... 
-  - 环境
-    - Window 10 家庭版中文版
-    - python 3.6.8
-    - pip 20.1.1
 
 ### 0X00 ftp
 
   - ftp的学习，包括客户端与服务端的实现
     - 基于pyftpdlib，ftplib
-  - 文件列表
+  - Directory
     - easy_ftp_server.bat
     - ftp_client.py
     - ftp_client_gui.py
@@ -23,7 +18,7 @@
     - 基于arp，icmp，udp以及tcp的ack发现
     - 支持地址端扫描，以及txt文档读取扫描
     - 基于scapy，socket
-  - 文件列表
+  - Directory
     - second_host_discovery.py
     - third_host_discovery.py
     - forth_host_discovery.py
@@ -37,7 +32,7 @@
     - 单地址，多地址，端口段以及txt文档读取扫描
     - 使用pickle存储数据
     - 基于scapy，socket
-  - 文件列表
+  - Directory
     - common_port_list.pkl
     - port.txt
     - port_scan.py
@@ -53,8 +48,7 @@
 ### 0X04 scanner
 
   - 扫描器，结合主机发现和端口扫描，可扩展性大，打算继续维护，后期可能独立出来
-  - 安装: `pip install -r requirements.txt`
-  - 文件列表
+  - Directory
     - common_port_list.pkl
     - host_scan.py
     - host_utils.py
@@ -63,20 +57,21 @@
     - port_scan.py
     - port_utils.py
     - scanner.py
+    - requirements.txt
 
 ### 0X05 sniffer
 
   - 嗅探器，类似于Wireshark
     - 在pthon_blackhat上第二章sniffer_ip_heared_decode.py上的扩展，可嗅探HTTP，TLS，TCP，UDP，SSDP，DNS，OICQ等协议
     - 基于struct，threading，socket，ctypes
-  - 文件列表
+  - Directory
     - sniffer.py
 
 ### 0X06 socket
 
   - udp、tcp的通讯模拟以及基于tcp、udp、sctp的shell
     - 基于socket
-  - 文件列表
+  - Directory
     - tcp_client.py
     - tcp_server.py
     - udp_p2p.py
@@ -93,7 +88,7 @@
   - 腾讯课堂的自动签到
     - 使用固定窗口，固定点击地址，模拟鼠标的点击
     - 基于win32gui，win32con，win32api
-  - 文件列表
+  - Directory
     - tx_qiandao.py
 
 ### 0X08 win32
@@ -101,7 +96,7 @@
   - [WinSpy](https://sourceforge.net/projects/winspyex/)
   - win32的操作
     - 基于win32gui，win32con，win32api，tkinter
-  - 文件列表
+  - Directory
     - power.py  ->  自写开机启动脚本，自动开启Tickeys，QQ，微信
     - time.py  ->  定时提醒小程序，倒计时，定时提醒等功能
 
@@ -109,7 +104,7 @@
 
   - mail客户端服务端
     - 实现邮件的发送以及接收，包括附件的发送以及解析
-  - 文件列表
+  - Directory
     - smtp.py
     - pop.py
     - Dan
@@ -127,7 +122,7 @@
 
   - requet模块的简单学习
     - 以sql盲注为例子，进行request模块的学习
-  - 文件列表
+  - Directory
     - request_test.py
     - normal_sql_inject.py
       - 一个字符暴力枚举127个ASCII码，枚举sqli的数据库的表和字段，需要接近9分钟（视电脑而定）
@@ -141,8 +136,8 @@
 ### 0X11 Remote_control_tool
 
   - 简单远控终端的编写
-    - 原项目来自：[tammypi](https://github.com/tammypi/remote_control_tool)，原始项目为python2开发，且本人在运行中存在一定的错误，现在改为python3开发，修复一定的错误（如接收数据TCP链接的前四个字节需丢弃）
-  - 文件列表
+    - 原项目来自：[tammypi](https://github.com/tammypi/remote_control_tool)，原始项目为python2开发，在运行中存在一定的错误，现在改为python3开发，修复一定的错误（如接收数据TCP链接的前四个字节需丢弃）
+  - Directory
     - clinet/client_main.py
       - python3开发的客户端，支持链接python2/3开发的服务端
     - server/server_main_python2.py
